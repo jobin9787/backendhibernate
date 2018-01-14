@@ -1,5 +1,6 @@
 package ca.paruvendu.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -9,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import ca.paruvendu.dao.IUserDAO;
+import ca.paruvendu.dao.IUserRoleDAO;
 import ca.paruvendu.domain.User;
 import ca.paruvendu.domain.security.UserRole;
-import ca.paruvendu.repository.RoleRepository;
-import ca.paruvendu.repository.UserRepository;
 import ca.paruvendu.service.UserService;
 
 @Component
@@ -20,15 +21,16 @@ public class UserServiceImpl implements UserService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
+ 
 	@Autowired
-	private UserRepository userRepository;
+	private IUserDAO usreDAO;
 	
 	@Autowired
-	private RoleRepository roleRepository;
+	private IUserRoleDAO roleRepository;
 	
 	@Transactional
 	public User createUser(User user, Set<UserRole> userRole) {
-		User localUser = userRepository.findByUsername(user.getUsername());
+		User localUser = usreDAO.findByUserName (user.getUsername());
 		
         if(localUser!=null){
         	logger.info("User {} already exist" + user.getUsername());
@@ -41,10 +43,38 @@ public class UserServiceImpl implements UserService {
         	
         	user.getUserRoles().addAll(userRole);
         	
-        	localUser=userRepository.save(user);
+        	localUser=usreDAO.save(user);
         }
         
         return localUser;
 	}
+
+	@Override
+	public User findByUserName(String username) {
+		return usreDAO.findByUserName(username);
+	}
+
+	@Override
+	public User findByEmail(String email) {
+		return usreDAO.findByEmail(email);
+	}
+
+	@Override
+	public User save(User user) {
+		return usreDAO.save(user);
+	}
+
+	@Override
+	public User findOne(Long id) {
+		return usreDAO.findOne(id);
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return usreDAO.findAll();
+	}
+	
+	
 
 }

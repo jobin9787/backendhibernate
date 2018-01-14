@@ -1,20 +1,18 @@
-package ca.paruvendu.service;
+package ca.paruvendu.dao;
 
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.stereotype.Service;
-
 import ca.paruvendu.domain.User;
 import ca.paruvendu.domain.security.UserRole;
 
-@Service
-public interface UserService {
+public interface IUserDAO {
 	
 	public User createUser(User user , Set<UserRole> userRole);
     public User findByUserName(String userName);
     public  User findByEmail(String email);
     public User save (User user);
     public User findOne(Long id);
-	public List<User> findAll();
+	List<User> findAll();
+
 }

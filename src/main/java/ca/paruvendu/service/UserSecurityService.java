@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import ca.paruvendu.domain.User;
-import ca.paruvendu.repository.UserRepository;
+
 
 @Service
 public class UserSecurityService implements UserDetailsService{
@@ -19,14 +19,14 @@ public class UserSecurityService implements UserDetailsService{
 			       getLogger(UserSecurityService.class);
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userRepository;
 	
 	@Override 
 	public UserDetails loadUserByUsername(String username) throws 
 	UsernameNotFoundException
 	
 	{
-		User user = userRepository.findByUsername(username);
+		User user = userRepository.findByUserName(username);
 		if(null == user){
 			logger.warn("User {} not found ", username);
 			throw new UsernameNotFoundException("username "+ username +" not found");

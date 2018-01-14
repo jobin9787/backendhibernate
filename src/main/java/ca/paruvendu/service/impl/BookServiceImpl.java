@@ -6,14 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ca.paruvendu.dao.IBookDAO;
+import ca.paruvendu.dao.IUserDAO;
 import ca.paruvendu.domain.Book;
-import ca.paruvendu.repository.BookRepository;
-import ca.paruvendu.service.BookService;
+import ca.paruvendu.service.IBookService;
 
 @Service
-public class BookServiceImpl implements BookService {
+public class BookServiceImpl implements IBookService {
 	@Autowired
-	private BookRepository bookRepository;
+	private IBookDAO bookRepository;
 
 	@Override
 	public List<Book> findAll() {

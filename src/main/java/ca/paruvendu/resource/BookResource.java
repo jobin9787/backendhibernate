@@ -28,7 +28,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import ca.paruvendu.domain.Book;
 import ca.paruvendu.domain.Gift;
-import ca.paruvendu.service.BookService;
+import ca.paruvendu.service.IBookService;
 import ca.paruvendu.service.GiftService;
 
 @RestController
@@ -37,7 +37,7 @@ public class BookResource {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BookResource.class);
 	@Autowired
-	private BookService bookService;
+	private IBookService bookService;
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public Book addBookPost(@RequestBody Book book){
 		return bookService.save(book);

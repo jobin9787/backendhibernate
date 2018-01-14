@@ -7,7 +7,7 @@ import java.util.List;
 import ca.paruvendu.domain.Book;
 
 
-public interface BookService {
+public interface IBookService {
 
 	public List<Book> findAll();
 
