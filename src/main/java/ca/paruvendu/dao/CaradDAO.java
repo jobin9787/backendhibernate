@@ -4,9 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.springframework.stereotype.Service;
 
 import ca.paruvendu.domain.Carad;
 
+@Service
 public class CaradDAO implements ICaradDAO {
 
 	
@@ -28,8 +32,9 @@ public class CaradDAO implements ICaradDAO {
 
 	@Override
 	public Carad findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = this.entityManager.createQuery("From Carad c where c.id=:id");
+        query.setParameter("id", id);
+        return (Carad) query.getSingleResult();
 	}
 
 }
