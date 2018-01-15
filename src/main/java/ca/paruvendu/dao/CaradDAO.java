@@ -6,11 +6,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ca.paruvendu.domain.Carad;
 
-@Service
+@Transactional
+@Repository
 public class CaradDAO implements ICaradDAO {
 
 	
@@ -19,8 +22,10 @@ public class CaradDAO implements ICaradDAO {
 	@Override
 	public Carad save(Carad carad) {
 		// TODO Auto-generated method stub
-		  entityManager.persist(carad);
-		  
+//		this.entityManager.getTransaction().begin();
+	    entityManager.persist(carad);
+//	    entityManager.getTransaction().commit();
+//	    entityManager.close();  
 		  return findById(carad.getId());
 	}
 

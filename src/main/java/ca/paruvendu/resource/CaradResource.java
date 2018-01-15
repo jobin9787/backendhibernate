@@ -1,11 +1,8 @@
 package ca.paruvendu.resource;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,8 +27,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ca.paruvendu.dao.ICaradDAO;
 import ca.paruvendu.domain.Carad;
+import ca.paruvendu.service.impl.CaradService;
 
 
 @RestController
@@ -41,7 +38,7 @@ public class CaradResource {
 	private static final Logger logger = LoggerFactory.getLogger(CaradResource.class);
 
 	@Autowired
-	private ICaradDAO caradService;
+	private CaradService caradService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Carad addCarad(@RequestBody Carad carad) {
