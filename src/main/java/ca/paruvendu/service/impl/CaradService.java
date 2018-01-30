@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ca.paruvendu.dao.ICaradDAO;
 import ca.paruvendu.domain.Carad;
+import ca.paruvendu.domain.Search;
 import ca.paruvendu.service.ICaradService;
 
 @Service
@@ -31,6 +32,11 @@ public class CaradService implements ICaradService {
 	public Carad findById(String id) {
 		// TODO Auto-generated method stub
 		return caradDAO.findById(id);
+	}
+
+	public List<Carad> findByKeyword(Search search) {
+		// TODO Auto-generated method stub
+		return caradDAO.findByKeyword(search);
 	}
 
 }

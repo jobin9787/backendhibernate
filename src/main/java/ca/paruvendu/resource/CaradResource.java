@@ -28,6 +28,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ca.paruvendu.domain.Carad;
+import ca.paruvendu.domain.Search;
 import ca.paruvendu.service.impl.CaradService;
 
 
@@ -62,39 +63,6 @@ public class CaradResource {
 						
 			File theDir = new File("src/main/resources/static/image/carad/"+id);
         	saveFilesToServer(multi,id);
-		
-			// if the directory does not exist, create it
-//			if (!theDir.exists()) {
-//			    System.out.println("creating directory: " + theDir.getName());
-//			    boolean result = false;
-//
-//			    try{
-//			        theDir.mkdir();
-//			        result = true;
-//			    } 
-//			    catch(SecurityException se){
-//			        //handle it
-//			    }        
-//			    if(result) {    
-//			        System.out.println("DIR created");  
-//			    }
-//			}
-			
-			
-//			while ( it.hasNext() )
-//			{
-//			MultipartFile multipartFile = multipartRequest.getFile(it.next());
-//			String fileName = id+i+ ".png";
-//            String reponame=id;
-//            
-//           logger.info("----->"+ multipartFile.getName());
-//			byte[] bytes = multipartFile.getBytes();
-//			BufferedOutputStream stream = new BufferedOutputStream(
-//					new FileOutputStream(new File("src/main/resources/static/image/carad/"+reponame+"/" + fileName)));
-//			stream.write(bytes);
-//			stream.close();
-//			i++;
-//			}
 			return new ResponseEntity("Upload Success!", HttpStatus.OK);
 		
 		
@@ -126,6 +94,7 @@ public class CaradResource {
 	  public Carad getCaradById(@PathVariable("id")  String id){
 		  ObjectMapper mapper = new ObjectMapper();
 			//Convert object to JSON string
+		  logger.info("Find by id--> "+ id);
 		  Carad carad= caradService.findById(id);
 		  String directory = "src/main/resources/static/image/carad/"+id;
 		   File file = new File(directory);
@@ -142,10 +111,16 @@ public class CaradResource {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
 		  
 		  logger.info("id---> "+id);
 		  return carad;
+	  }
+	  
+	  
+	  @RequestMapping(value="/searchCarad/key", method=RequestMethod.POST)
+	  List<Carad>  getCaradByKeyword(@RequestBody Search search){
+		  logger.info("search element 1---> "+search.getElement1());
+		  return caradService.findByKeyword(search);
 	  }
 	
 
