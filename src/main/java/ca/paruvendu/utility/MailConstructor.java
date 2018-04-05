@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-
+import ca.paruvendu.domain.Message;
 import ca.paruvendu.domain.User;
 
 @Component
@@ -58,5 +58,15 @@ public class MailConstructor {
 //		
 //		return messagePreparator;
 //	}
+	
+	public SimpleMailMessage sendAdMessage(Message message){
+		
+		SimpleMailMessage email = new SimpleMailMessage();
+		email.setTo(message.getEmail());
+		email.setText(message.getText());
+		email.setFrom(message.getSender());
+		email.setReplyTo(message.getSender());
+		return email;
+	}
 
 }

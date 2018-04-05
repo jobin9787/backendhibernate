@@ -93,15 +93,25 @@ public class CaradResource {
 	  @RequestMapping("/{id}")
 	  public Carad getCaradById(@PathVariable("id")  String id){
 		  ObjectMapper mapper = new ObjectMapper();
-			//Convert object to JSON string
+		  int numFiles=0;
+		  File file;
+		  String[] files;
+		  //Convert object to JSON string
 		  logger.info("Find by id--> "+ id);
 		  Carad carad= caradService.findById(id);
 		  String directory = "src/main/resources/static/image/carad/"+id;
-		   File file = new File(directory);
-		   String[] files = file.list();
-		   int numFiles = files.length;
-		   logger.info("numFiles---> "+ numFiles);
-		   carad.setFileNumber(numFiles);
+		  
+		  try {
+			   file = new File(directory);
+			    files = file.list();
+			    numFiles = files.length;
+			   logger.info("numFiles---> "+ numFiles);
+			  } catch (NullPointerException e) {
+			    System.out.println("File null !");
+			  }
+			   
+					  
+		    carad.setFileNumber(numFiles);
 			String jsonInString;
 			try {
 				jsonInString = mapper.writeValueAsString(carad);

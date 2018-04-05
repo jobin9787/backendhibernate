@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.paruvendu.config.SecurityUtility;
+import ca.paruvendu.domain.Carad;
+import ca.paruvendu.domain.Message;
 import ca.paruvendu.domain.User;
 import ca.paruvendu.domain.security.Role;
 import ca.paruvendu.domain.security.UserRole;
@@ -121,6 +123,17 @@ public class UserResource {
 
 		return new ResponseEntity("Email sent", HttpStatus.OK);
 
+	}
+	
+	@RequestMapping(value="/sendmessage", method=RequestMethod.POST)
+	public ResponseEntity sendMessagePost(@RequestBody Message message 
+
+			) throws Exception {
+		
+		logger.info("Call sendmessage back end ");
+		SimpleMailMessage newEmail = mailConstructor.sendAdMessage(message);
+		mailSender.send(newEmail);
+		return new ResponseEntity("Message sent", HttpStatus.OK);
 	}
 
 }

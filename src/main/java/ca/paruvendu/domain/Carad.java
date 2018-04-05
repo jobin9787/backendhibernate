@@ -53,7 +53,7 @@ public class Carad implements Serializable{
 		private String color;
 		private String Drivetrain;
 		private String doorNo;
-
+		private String postalcode;
 		
 		transient private int fileNumber;
 		
@@ -244,6 +244,12 @@ public class Carad implements Serializable{
 		}
 		public void setFileNumber(int fileNumber) {
 			this.fileNumber = fileNumber;
+		}
+		public String getPostalcode() {
+			return postalcode;
+		}
+		public void setPostalcode(String postalcode) {
+			this.postalcode = postalcode;
 		}
 		
 		
