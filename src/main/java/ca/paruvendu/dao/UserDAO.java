@@ -4,13 +4,16 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import ca.paruvendu.domain.Carad;
 import ca.paruvendu.domain.User;
 import ca.paruvendu.domain.security.UserRole;
 
@@ -24,24 +27,40 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public User findOne(Long id) {
-		String hql = "FROM User as user WHERE user.id = ?";
-		return (User) entityManager.createQuery(hql).setParameter(1, id).getSingleResult();
-//		return entityManager.find(User.class,id);
+		Query query = this.entityManager.createQuery("From User u where u.id=:id");
+        query.setParameter("id", id);
+        return (User) query.getSingleResult();
 	}
 
 	@Override
 	public User findByUserName(String username) {
-		String hql = "FROM User as user WHERE user.username = ?";
-		return (User) entityManager.createQuery(hql).setParameter(1, username).getSingleResult();
+		logger.info("findByUserName--> "+ username);
+		Query query = this.entityManager.createQuery("FROM User u where u.username=:username");
+		User user =null;
+		query.setParameter("username", username);
+		try{
+			user = (User)query.getSingleResult();
+		   }
+			catch (NoResultException nre){
+				logger.info("NoResultException No user name --> "+ username);
+	       }
+		
+        return user; 
 	}
 	
 	@Override
 	public User findByEmail(String email) {
-		String hql = "FROM User as user WHERE user.email = ?";
-		logger.info(hql.toString());
-		Object obj = entityManager.createQuery(hql).setParameter(1, email).getSingleResult();
-//		return (User) entityManager.createQuery(hql).setParameter(1, email).getSingleResult();
-		return (User) obj;
+		Query query = this.entityManager.createQuery("FROM User u WHERE u.email =:email");
+		query.setParameter("email", email);
+	    User user=null;
+	    
+		try{
+			user = (User) query.getSingleResult();
+		   }
+			catch (NoResultException nre){
+				logger.info("NoResultException No email --> "+ email);
+	       }
+		return user;
 	}
 
 	@Override

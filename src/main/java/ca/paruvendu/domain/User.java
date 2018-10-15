@@ -25,7 +25,7 @@ import ca.paruvendu.domain.security.UserRole;
 
 
 @Entity
-@Table(name = "user")
+//@Table(name = "user")
 public class User implements UserDetails, Serializable{
 	
 	private static final long serialVersionUID=4444L;

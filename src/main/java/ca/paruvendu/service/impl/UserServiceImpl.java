@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import ca.paruvendu.dao.IUserDAO;
 import ca.paruvendu.dao.IUserRoleDAO;
@@ -16,7 +17,7 @@ import ca.paruvendu.domain.User;
 import ca.paruvendu.domain.security.UserRole;
 import ca.paruvendu.service.UserService;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private IUserRoleDAO roleRepository;
 	
-	@Transactional
+//	@Transactional
 	public User createUser(User user, Set<UserRole> userRole) {
 		User localUser = usreDAO.findByUserName (user.getUsername());
 		
@@ -45,6 +46,10 @@ public class UserServiceImpl implements UserService {
         	
         	localUser=usreDAO.save(user);
         }
+		
+		user.getUserRoles().addAll(userRole);
+    	
+		 localUser=usreDAO.save(user);
         
         return localUser;
 	}

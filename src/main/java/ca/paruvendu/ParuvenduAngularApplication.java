@@ -15,27 +15,29 @@ import ca.paruvendu.domain.security.UserRole;
 import ca.paruvendu.service.UserService;
 
 @SpringBootApplication
-public class ParuvenduAngularApplication {
+public class ParuvenduAngularApplication 
+//implementsCommandLineRunner
+{
 
 	
-//	@Autowired 
-//	private UserService userService;
-//	
+	@Autowired 
+	private UserService userService;
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ParuvenduAngularApplication.class, args);
 	}
 
 	
-	
+//	
 //	@Override 
 //	public void run(String... args){
 //		
 //		User user1 = new User();
 //		user1.setFirstName("John");
 //		user1.setLastName("Doe");
-//		user1.setEmail("test@test.ca");
-//		user1.setUsername("j");
+//		user1.setEmail("testtest@test.ca");
+//		user1.setUsername("j1");
 //		user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
 //		Set<UserRole> userRole = new HashSet<>();
 //		Role role1 = new Role();
