@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,8 @@ public class CaradResource {
 
 	@Autowired
 	private CaradService caradService;
+	
+	
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Carad addCarad(@RequestBody Carad carad) {
@@ -49,6 +52,7 @@ public class CaradResource {
 
 	}
 
+  
 	@RequestMapping(value = "/add/image", method = RequestMethod.POST)
 	public ResponseEntity upload(@RequestParam("id") String id, HttpServletResponse response,
 			HttpServletRequest request) {
@@ -132,6 +136,8 @@ public class CaradResource {
 		  logger.info("search element 1---> "+search.getElement1());
 		  return caradService.findByKeyword(search);
 	  }
+	  
+
 	
 
 }
