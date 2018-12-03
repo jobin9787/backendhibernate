@@ -18,7 +18,7 @@ public class RequestFilter implements Filter{
 	
 	public void doFilter(ServletRequest req,ServletResponse resp, FilterChain chain){
 		HttpServletRequest request = (HttpServletRequest)req;
-		HttpServletResponse response = (HttpServletResponse)resp;
+		HttpServletResponse response = (HttpServletResponse) resp;
 		
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
