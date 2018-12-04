@@ -26,6 +26,8 @@ public class RequestFilter implements Filter{
 		logger.info("remote host "+ req.getRemoteHost());
 		logger.info("remote port "+ req.getRemotePort());
 		logger.info("remote addr "+ req.getRemoteAddr());
+		logger.info("remote Origin "+ request.getHeader("Origin"));
+		
 
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
