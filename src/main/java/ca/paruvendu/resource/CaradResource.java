@@ -32,7 +32,7 @@ import ca.paruvendu.domain.Carad;
 import ca.paruvendu.domain.Search;
 import ca.paruvendu.service.impl.CaradService;
 
-@CrossOrigin(origins = "http://192.168.1.124:58011", maxAge = 3600)
+@CrossOrigin(origins = "http://192.168.1.124", maxAge = 3600)
 @RestController
 @RequestMapping("/carad")
 public class CaradResource {
