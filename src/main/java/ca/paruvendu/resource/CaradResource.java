@@ -53,7 +53,7 @@ public class CaradResource {
 	}
 
   
-	@RequestMapping(value = "/add/image", method = RequestMethod.POST)
+	@RequestMapping(value = "/add/image", method = RequestMethod.PUT)
 	public ResponseEntity upload(@RequestParam("id") String id, HttpServletResponse response,
 			HttpServletRequest request) {
 		try {
