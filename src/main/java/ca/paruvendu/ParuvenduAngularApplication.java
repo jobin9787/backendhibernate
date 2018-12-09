@@ -23,6 +23,7 @@ public class ParuvenduAngularApplication extends SpringBootServletInitializer {
 	
 	
 	public static void main(String[] args) {
+		System.setProperty("org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH", "true");
 		SpringApplication.run(ParuvenduAngularApplication.class, args);
 	}
 
