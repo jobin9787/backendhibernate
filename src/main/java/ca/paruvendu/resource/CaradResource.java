@@ -47,7 +47,7 @@ public class CaradResource {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Carad addCarad(@RequestBody Carad carad) {
 
-		logger.info("Car ad called");
+		
 		return caradService.save(carad);
 
 	}
@@ -64,7 +64,7 @@ public class CaradResource {
 			List<MultipartFile> multi = multipartRequest.  getFiles("uploads[]");
 	
 			int i=1;
-						
+			logger.info("create file");			
 			File theDir = new File("src/main/resources/static/image/carad/"+id);
         	saveFilesToServer(multi,id);
 			return new ResponseEntity("Upload Success!", HttpStatus.OK);
