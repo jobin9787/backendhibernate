@@ -70,6 +70,7 @@ public class CaradResource {
 			File theDir = new File("src/main/resources/static/image/carad/"+id);
 			Path path = Paths.get(theDir.toString());
 			String fullpath=path.toUri().toString();
+			logger.info("fullpath  "+fullpath);	
         	saveFilesToServer(multi,id);
 			return new ResponseEntity("Upload Success!", HttpStatus.OK);
 		
