@@ -3,6 +3,8 @@ package ca.paruvendu.resource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
@@ -62,10 +64,12 @@ public class CaradResource {
 			Iterator<String> it = multipartRequest.getFileNames();
 			
 			List<MultipartFile> multi = multipartRequest.  getFiles("uploads[]");
-	
+			
 			int i=1;
 			logger.info("create file");			
 			File theDir = new File("src/main/resources/static/image/carad/"+id);
+			Path path = Paths.get(theDir.toString());
+			String fullpath=path.toUri().toString();
         	saveFilesToServer(multi,id);
 			return new ResponseEntity("Upload Success!", HttpStatus.OK);
 		
