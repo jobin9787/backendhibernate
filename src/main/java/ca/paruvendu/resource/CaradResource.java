@@ -37,6 +37,7 @@ import ca.paruvendu.service.impl.CaradService;
 
 @RestController
 @RequestMapping("/carad")
+@CrossOrigin(origins="http://192.168.1.101")
 public class CaradResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(CaradResource.class);
