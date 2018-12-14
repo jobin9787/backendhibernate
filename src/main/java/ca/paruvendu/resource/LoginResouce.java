@@ -38,7 +38,7 @@ public class LoginResouce {
 	}
 	
 	@RequestMapping("/checkSession")
-	@CrossOrigin(origins="192.168.1.124")
+	@CrossOrigin(origins="192.168.1.101")
 	public ResponseEntity checkSession(){
 		return new ResponseEntity("Session Active",HttpStatus.OK);
 	}
