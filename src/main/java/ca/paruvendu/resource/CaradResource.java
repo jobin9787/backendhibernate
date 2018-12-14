@@ -37,7 +37,7 @@ import ca.paruvendu.service.impl.CaradService;
 
 @RestController
 @RequestMapping("/carad")
-@CrossOrigin(origins="http://192.168.1.101")
+
 public class CaradResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(CaradResource.class);
@@ -48,6 +48,7 @@ public class CaradResource {
 	
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@CrossOrigin(origins="http://192.168.1.101")
 	public Carad addCarad(@RequestBody Carad carad) {
 
 		
@@ -57,6 +58,7 @@ public class CaradResource {
 
   
 	@RequestMapping(value = "/add/image", method = RequestMethod.POST)
+	@CrossOrigin(origins="http://192.168.1.101")
 	public ResponseEntity upload(@RequestParam("id") String id, HttpServletResponse response,
 			HttpServletRequest request) {
 		try {
