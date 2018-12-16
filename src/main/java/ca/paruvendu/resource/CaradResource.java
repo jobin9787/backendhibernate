@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,7 +72,7 @@ public class CaradResource {
 			
 			int i=1;
 			logger.info("create file");			
-			File theDir = new File("/var/www/image/carad/"+id);
+			File theDir = new File(new URI("file:///var/www/image/carad/"+id));
 			Path path = Paths.get(theDir.toString());
 			String fullpath=path.toUri().toString();
 			logger.info("fullpath  "+fullpath);	
@@ -85,10 +87,20 @@ public class CaradResource {
 	}
 	
 	  public void saveFilesToServer(List<MultipartFile> multipartFiles, String id) throws IOException {
-		  	String directory = "src/main/resources/static/image/carad/"+id;
+		  	String directory = "file:///var/www/image/carad/"+id;
 			int i=1;
-		  	File file = new File(directory);
-			file.mkdirs();
+		  	File file;
+			try {
+				file = new File(new URI(directory));
+				file.mkdirs();
+				Path path = Paths.get(file.toString());
+				String fullpath=path.toUri().toString();
+				logger.info("creation of folder "+ fullpath);	
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			for (MultipartFile multipartFile : multipartFiles) {
 				file = new File(directory+"/" + id+i+".png");
 				IOUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
