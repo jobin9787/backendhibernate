@@ -87,7 +87,7 @@ public class CaradResource {
 	}
 	
 	  public void saveFilesToServer(List<MultipartFile> multipartFiles, String id) throws IOException {
-		  	String directory = "file:///var/www/image/carad/"+id;
+		  	String directory = "file:///var/www/html/image/carad/"+id;
 			int i=1;
 		  	File file;
 			try {
