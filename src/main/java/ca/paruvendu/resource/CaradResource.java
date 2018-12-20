@@ -96,16 +96,19 @@ public class CaradResource {
 				Path path = Paths.get(file.toString());
 				String fullpath=path.toUri().toString();
 				logger.info("creation of folder "+ fullpath);	
+				
+				for (MultipartFile multipartFile : multipartFiles) {
+					file = new File(new URI(directory+"/" + id+i+".png"));
+					IOUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
+					i++;
+				}
+				
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			for (MultipartFile multipartFile : multipartFiles) {
-				file = new File(directory+"/" + id+i+".png");
-				IOUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
-				i++;
-			}
+			
 		  }
 	  
 	  @RequestMapping(value="caradList", method=RequestMethod.GET)
