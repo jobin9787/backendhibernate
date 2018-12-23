@@ -3,10 +3,14 @@ package ca.paruvendu.resource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -88,17 +92,21 @@ public class CaradResource {
 	
 	  public void saveFilesToServer(List<MultipartFile> multipartFiles, String id) throws IOException {
 		  	String directory = "file:///var/www/html/image/carad/"+id;
+		  	Set<PosixFilePermission> permissions = PosixFilePermissions.fromString("rwxr-xr-x");
 			int i=1;
 		  	File file;
 			try {
 				file = new File(new URI(directory));
-				file.mkdirs();
+				if (file.mkdirs())
+					 Files.setPosixFilePermissions(file.toPath(), permissions);
+				
 				Path path = Paths.get(file.toString());
 				String fullpath=path.toUri().toString();
 				logger.info("creation of folder "+ fullpath);	
 				
 				for (MultipartFile multipartFile : multipartFiles) {
 					file = new File(new URI(directory+"/" + id+i+".png"));
+					 Files.setPosixFilePermissions(file.toPath(), permissions);
 					IOUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
 					i++;
 				}
