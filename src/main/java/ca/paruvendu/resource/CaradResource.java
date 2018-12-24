@@ -106,9 +106,9 @@ public class CaradResource {
 				
 				for (MultipartFile multipartFile : multipartFiles) {
 					file = new File(new URI(directory+"/" + id+i+".png"));
-					 Files.setPosixFilePermissions(file.toPath(), permissions);
 					IOUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
-					i++;
+					 Files.setPosixFilePermissions(file.toPath(), permissions);
+				  i++;
 				}
 				
 			} catch (URISyntaxException e) {
