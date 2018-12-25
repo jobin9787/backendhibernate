@@ -54,7 +54,7 @@ public class CaradResource {
 	
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@CrossOrigin(origins="http://192.168.1.101")
+	@CrossOrigin(origins="http://13.58.52.66")
 	public Carad addCarad(@RequestBody Carad carad) {
 
 		
@@ -64,7 +64,7 @@ public class CaradResource {
 
   
 	@RequestMapping(value = "/add/image", method = RequestMethod.POST)
-	@CrossOrigin(origins="http://192.168.1.101")
+	@CrossOrigin(origins="http://13.58.52.66")
 	public ResponseEntity upload(@RequestParam("id") String id, HttpServletResponse response,
 			HttpServletRequest request) {
 		try {
