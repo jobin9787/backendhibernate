@@ -134,7 +134,7 @@ public class CaradResource {
 		  //Convert object to JSON string
 		  logger.info("Find by id--> "+ id);
 		  Carad carad= caradService.findById(id);
-		  String directory = "src/main/resources/static/image/carad/"+id;
+		  String directory = "file:///var/www/html/image/carad/"+id;
 		  
 		  try {
 			   file = new File(directory);
