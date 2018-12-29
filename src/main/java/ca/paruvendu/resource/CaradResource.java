@@ -137,11 +137,11 @@ public class CaradResource {
 		  String directory = "file:///var/www/html/image/carad/"+id;
 		  
 		  try {
-			   file = new File(directory);
+			   file = new File(new URI(directory));
 			    files = file.list();
 			    numFiles = files.length;
 			   logger.info("numFiles---> "+ numFiles);
-			  } catch (NullPointerException e) {
+			  } catch (NullPointerException | URISyntaxException e) {
 			    System.out.println("File null !");
 			  }
 			   
