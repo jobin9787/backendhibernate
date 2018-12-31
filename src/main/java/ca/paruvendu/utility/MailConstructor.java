@@ -62,7 +62,7 @@ public class MailConstructor {
 	public SimpleMailMessage sendAdMessage(Message message){
 		
 		SimpleMailMessage email = new SimpleMailMessage();
-		email.setTo(message.getEmail());
+		email.setTo(message.getSender());
 		email.setText(message.getText());
 		email.setFrom(message.getSender());
 		email.setReplyTo(message.getSender());
