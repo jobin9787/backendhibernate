@@ -34,7 +34,7 @@ public class MailConstructor {
 		email.setTo(user.getEmail());
 		email.setSubject("Le's Bookstore - New User");
 		email.setText(message);
-		email.setFrom(env.getProperty("support.email"));
+		email.setFrom(env.getProperty("spring.mail.username"));
 		return email;
 	}
 	
