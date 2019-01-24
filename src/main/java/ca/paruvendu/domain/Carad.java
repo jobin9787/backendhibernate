@@ -1,5 +1,6 @@
 package ca.paruvendu.domain;
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,7 +55,8 @@ public class Carad implements Serializable{
 		private String Drivetrain;
 		private String doorNo;
 		private String postalcode;
-		
+		private String areacode;
+		private Date addate;
 		transient private int fileNumber;
 		
 		
@@ -250,6 +252,18 @@ public class Carad implements Serializable{
 		}
 		public void setPostalcode(String postalcode) {
 			this.postalcode = postalcode;
+		}
+		public String getAreacode() {
+			return areacode;
+		}
+		public void setAreacode(String areacode) {
+			this.areacode = areacode;
+		}
+		public Date getAddate() {
+			return addate;
+		}
+		public void setAddate(Date addate) {
+			this.addate = addate;
 		}
 		
 		

@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
 import java.nio.file.attribute.PosixFilePermissions;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -57,7 +58,8 @@ public class CaradResource {
 	@CrossOrigin(origins="http://13.58.52.66")
 	public Carad addCarad(@RequestBody Carad carad) {
 
-		
+		Date addate = new Date();
+		carad.setAddate(addate);
 		return caradService.save(carad);
 
 	}
