@@ -1,6 +1,7 @@
 package ca.paruvendu.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,10 +33,13 @@ public class Appad  implements Serializable{
 	private int pet;
 	private String descr;
 	private String email;
-	private String adress;
+	private String address;
 	private String postalcode;
 	private String location;
 	private int furnished;
+	private String areacode;
+	private Date addate;
+	private String phone;
 	transient private int fileNumber;	
 	
 	
@@ -111,11 +115,12 @@ public class Appad  implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAdress() {
-		return adress;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getPostalcode() {
 		return postalcode;
@@ -140,6 +145,24 @@ public class Appad  implements Serializable{
 	}
 	public void setFileNumber(int fileNumber) {
 		this.fileNumber = fileNumber;
+	}
+	public String getAreacode() {
+		return areacode;
+	}
+	public void setAreacode(String areacode) {
+		this.areacode = areacode;
+	}
+	public Date getAddate() {
+		return addate;
+	}
+	public void setAddate(Date addate) {
+		this.addate = addate;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 	

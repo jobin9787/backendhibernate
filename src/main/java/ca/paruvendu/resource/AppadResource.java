@@ -3,6 +3,7 @@ package ca.paruvendu.resource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -45,7 +46,9 @@ public class AppadResource {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public Appad addAppad(@RequestBody Appad appad) {
 
-		logger.info("App ad called");
+		Date addate = new Date();
+		appad.setAddate(addate);
+		
 		return appadService.save(appad);
 
 	}
