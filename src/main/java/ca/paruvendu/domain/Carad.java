@@ -57,6 +57,7 @@ public class Carad implements Serializable{
 		private String postalcode;
 		private String areacode;
 		private Date addate;
+		private String pricetype;
 		transient private int fileNumber;
 		
 		
@@ -264,6 +265,12 @@ public class Carad implements Serializable{
 		}
 		public void setAddate(Date addate) {
 			this.addate = addate;
+		}
+		public String getPricetype() {
+			return pricetype;
+		}
+		public void setPricetype(String pricetype) {
+			this.pricetype = pricetype;
 		}
 		
 		
