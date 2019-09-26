@@ -70,7 +70,7 @@ public class GiveFreeResource {
 	
 	
 	public void saveFilesToServer(List<MultipartFile> multipartFiles, String id) throws IOException {
-		String directory = "src/main/resources/static/image/givefree/" + id;
+		String directory = "file:///var/www/html/image/carad/" + id;
 		int i = 1;
 		File file;
 		try {

@@ -77,7 +77,7 @@ public class CaradResource {
 			
 			int i=1;
 			logger.info("create file");			
-			File theDir = new File(new URI("file:///var/www/image/carad/"+id));
+			File theDir = new File(new URI("file:///var/www/html/image/carad/"+id));
 			Path path = Paths.get(theDir.toString());
 			String fullpath=path.toUri().toString();
 			logger.info("fullpath  "+fullpath);	
