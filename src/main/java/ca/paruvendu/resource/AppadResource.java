@@ -3,9 +3,17 @@ package ca.paruvendu.resource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -122,16 +130,34 @@ public class AppadResource {
 	}
 	
 	  public void saveFilesToServer(List<MultipartFile> multipartFiles, String id) throws IOException {
-		  	String directory = "file:///var/www/html/image/carad/"+id;
+		  	String directory = "file:///var/www/html/image/appad/"+id;
+			Set<PosixFilePermission> permissions = PosixFilePermissions.fromString("rwxr-xr-x");
 			int i=1;
-		  	File file = new File(directory);
-			file.mkdirs();
-			for (MultipartFile multipartFile : multipartFiles) {
-				file = new File(directory+"/" + id+i+".png");
-				IOUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
-				i++;
+		  	File file;
+			try {
+				file = new File(new URI(directory));
+				if (file.mkdirs())
+					 Files.setPosixFilePermissions(file.toPath(), permissions);
+				
+				Path path = Paths.get(file.toString());
+				String fullpath=path.toUri().toString();
+				logger.info("creation of folder "+ fullpath);	
+				
+				for (MultipartFile multipartFile : multipartFiles) {
+					file = new File(new URI(directory+"/" + id+i+".png"));
+					IOUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
+					 Files.setPosixFilePermissions(file.toPath(), permissions);
+				  i++;
+				}
+				
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
+			
 		  }
+	  
 	  
 	  
 	  @RequestMapping(value="/searchAppad/key", method=RequestMethod.POST)
