@@ -55,7 +55,7 @@ public class CaradResource {
 	
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@CrossOrigin(origins="http://13.58.52.66")
+	@CrossOrigin(origins="http://http://18.188.26.113/")
 	public Carad addCarad(@RequestBody Carad carad) {
 		Date addate = new Date();
 		carad.setAddate(addate);
