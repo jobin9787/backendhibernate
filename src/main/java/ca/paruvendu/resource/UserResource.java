@@ -92,7 +92,7 @@ public class UserResource {
 		SimpleMailMessage email = mailConstructor.constructNewUserEmail(user, password);
 		mailSender.send(email);
 
-		return new ResponseEntity("User Added Successfully!", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity("User Added Successfully!", HttpStatus.OK);
 
 	}
 

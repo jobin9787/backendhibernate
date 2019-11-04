@@ -40,7 +40,9 @@ public class LoginResouce {
 	@RequestMapping("/checkSession")
 	@CrossOrigin(origins="http://18.188.26.113/")
 	public ResponseEntity checkSession(){
-		return new ResponseEntity("Session Active",HttpStatus.BAD_REQUEST);
+		ResponseEntity resp = new ResponseEntity("Session Active",HttpStatus.OK);
+		resp.getHeaders().setAccessControlAllowOrigin("*");
+		return  resp;
 	}
 	
 	@RequestMapping(value="/user/logout", method=RequestMethod.POST)
