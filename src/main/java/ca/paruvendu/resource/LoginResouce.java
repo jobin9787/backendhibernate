@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,10 +40,7 @@ public class LoginResouce {
 	@RequestMapping("/checkSession")
 	@CrossOrigin(origins="http://18.188.26.113/")
 	public ResponseEntity checkSession(){
-		 HttpHeaders responseHeaders = new HttpHeaders();
-		    responseHeaders.set("Access-Control-Allow-Origin", 
-		      "*");
-		return new ResponseEntity(responseHeaders,HttpStatus.OK);
+		return new ResponseEntity("Session Active",HttpStatus.BAD_REQUEST);
 	}
 	
 	@RequestMapping(value="/user/logout", method=RequestMethod.POST)
