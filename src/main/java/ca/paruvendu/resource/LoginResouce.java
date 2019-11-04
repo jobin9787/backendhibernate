@@ -43,7 +43,7 @@ public class LoginResouce {
 	public ResponseEntity checkSession(){
 		 HttpHeaders responseHeaders = new HttpHeaders();
 		    responseHeaders.set("Access-Control-Allow-Origin", 
-		      "http://18.188.26.113");
+		      "*");
 		return new ResponseEntity(responseHeaders,HttpStatus.OK);
 	}
 	
