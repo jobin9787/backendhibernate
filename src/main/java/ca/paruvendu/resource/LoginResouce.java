@@ -43,7 +43,7 @@ public class LoginResouce {
 	public ResponseEntity checkSession(){
 		HttpHeaders headers = new HttpHeaders();
 	    headers.add("Access-Control-Allow-Origin", "*");
-		return new ResponseEntity("Logout Succefully",headers,HttpStatus.OK);
+		return new ResponseEntity("Logout Succefully",headers,HttpStatus.BAD_REQUEST);
 	}
 	
 	@RequestMapping(value="/user/logout", method=RequestMethod.POST)
